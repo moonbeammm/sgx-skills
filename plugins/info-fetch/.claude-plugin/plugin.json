@@ -1,9 +1,0 @@
-{
-  "name": "info-fetch",
-  "description": "从 info.bilibili.co (Bilibili 内部 info) 读取和写入页面内容。当用户提及获取 info 页面、读取 wiki、写入 info、更新页面时使用。",
-  "version": "0.1.0",
-  "author": {
-    "name": "sunguangxin",
-    "email": "sunguangxin@bilibili.com"
-  }
-}

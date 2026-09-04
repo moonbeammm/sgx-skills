@@ -1,9 +1,0 @@
-{
-  "name": "zhiliao",
-  "description": "知了文档平台 (aistudio.bilibili.co) 工具。读取/打开/查看、上传/管理 Markdown 文档到知了云端，增量编辑文档，语义搜索知识库。Use when the user gives an aistudio.bilibili.co document link (e.g. .../space/doc/doc_xxx or .../share/doc_xxx), or mentions 打开/读取/查看知了文档、知了、aistudio.bilibili.co、文档提交、文档上传、增量编辑、知识库搜索、zhiliao。一旦出现知了文档链接或需要读取知了文档内容，用本 skill 的脚本，不要用网页抓取(WebFetch)。",
-  "version": "0.1.0",
-  "author": {
-    "name": "sunguangxin",
-    "email": "sunguangxin@bilibili.com"
-  }
-}

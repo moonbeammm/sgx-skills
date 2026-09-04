@@ -7,44 +7,16 @@
     "研发",
     "个人"
   ],
-  "description": "sgx 自研技能市场（dev-workflow/bugfix-workflow 等）",
+  "description": "sgx 定制 agent 技能市场",
   "owner": {
     "name": "sunguangxin",
-    "email": "sunguangxin@bilibili.com"
+    "url": "https://github.com/moonbeammm"
   },
   "plugins": [
     {
-      "name": "dev-workflow",
-      "description": "Use when：处理需求开发、技术方案、任务拆分、任务实现时使用。关键词：需求、TAPD。",
-      "source": "./plugins/dev-workflow",
-      "category": "development",
-      "strict": false
-    },
-    {
-      "name": "bugfix-workflow",
-      "description": "用于结合 mid、buvid、设备日志和源代码，排查播放用户反馈、客诉、设备特定故障，或间歇出现的 Story、视频详情页、播放器、弹幕、投屏、缓存、网络和播放行为问题时。",
-      "source": "./plugins/bugfix-workflow",
-      "category": "development",
-      "strict": false
-    },
-    {
-      "name": "code-review",
-      "description": "对 GitLab MR 进行 Code Review。当用户输入 MR 链接或 MRID 并说 code review、review、审查代码、帮我看看这个MR 等关键词时触发。",
-      "source": "./plugins/code-review",
-      "category": "development",
-      "strict": false
-    },
-    {
-      "name": "info-fetch",
-      "description": "从 info.bilibili.co (Bilibili 内部 info) 读取和写入页面内容。当用户提及获取 info 页面、读取 wiki、写入 info、更新页面时使用。",
-      "source": "./plugins/info-fetch",
-      "category": "development",
-      "strict": false
-    },
-    {
-      "name": "zhiliao",
-      "description": "知了文档平台 (aistudio.bilibili.co) 工具。读取/打开/查看、上传/管理 Markdown 文档到知了云端，增量编辑文档，语义搜索知识库。Use when the user gives an aistudio.bilibili.co document link (e.g. .../space/doc/doc_xxx or .../share/doc_xxx), or mentions 打开/读取/查看知了文档、知了、aistudio.bilibili.co、文档提交、文档上传、增量编辑、知识库搜索、zhiliao。一旦出现知了文档链接或需要读取知了文档内容，用本 skill 的脚本，不要用网页抓取(WebFetch)。",
-      "source": "./plugins/zhiliao",
+      "name": "sgx-skills",
+      "source": "./",
+      "description": "sgx 定制播放研发 agent 技能集（dev-workflow 等 5 个）",
       "category": "development",
       "strict": false
     }

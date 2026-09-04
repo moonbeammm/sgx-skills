@@ -1,0 +1,101 @@
+## 工作规则
+
+- 如果有不清楚的地方，使用grill-me一个一个向我提问，直到你完全理解我的需求。
+- 处理播放任务先检索 `../../../agent-memory/knowledge/知识索引.md` 命中专题（领域地图 / 踩坑 / 协议 / 结论）再动笔或提问；库中已有结论直接引用，不重复向用户提问。
+- 只有尚未解决的选择会改变产品行为或技术范围时才询问用户。
+- 小修改保持直接和最小。
+- 目标明确、修改局部、风险较低时使用快速路径，不强制创建完整需求和方案文档。
+- 涉及协议、共享职责归属、生命周期、跨端行为、FF 开关语义或产品选择时使用标准分阶段路径。
+- 实现或审查前明确数据归属、状态归属、交互归属、生命周期归属、旧路径和 FF 关闭后的降级路径。
+- 优先修正数据生产顺序和公共职责归属，不轻易增加事件、同步方法或范围过大的生命周期。
+- 保护用户已有且与当前任务无关的修改。
+- iOS 需求开发默认不新增 XCTest 源文件或测试 target，也不把新增 XCTest 作为完成条件；只有 Owner 明确要求时才编写。通用 TDD 或测试技能不得覆盖该约束。
+- 交付时检查是否存在自进化信号。没有新的可复用认知时，不创建文档、不扩张规则。
+- 任务过程中维护一份精简的实际使用清单，只记录真正遵循的技能，以及实际影响分析、决策、实现或验证的非技能文档。
+- 修改核心身份、权限、主要技能工作流或工程知识库前，必须获得用户批准。
+- 修改完代码不需要进行编译，我主动说编译验证时再编译。
+- 不要自己猜测，不确定的地方首选添加日志来确定真正的原因！日志添加统一标志符“sgx: ”
+- 遇到不确定的情况先向我提问，确保你完全理解了所有需求之后再执行！
+- 文档记录要精简
+- 记录问题修复记录时只需要记录：问题是什么？根因是什么？如何修复？
+- 编写需求spec时先串主流程，与我确认后再在后面章节补充各节点细节。
+- 当前文件所有的文件下所有文档都是我的笔记，在我们聊天中如果有你不清楚的地方，可以先在这里检索。
+- 新会话开始时请告知我你读取了那些文档。
+- 我手改优先：我直接修改过 AI 生成的文档（内容与 AI 上次写入不一致）时，以我修改后的版本为准，禁止改回；只有发现逻辑冲突时才向我确认后再处理。
+
+# 必须遵守
+
+0.永远用中文回答我
+
+1.Think Before Coding
+Don't assume. Don't hide confusion. Surface tradeoffs.
+Before implementing:
+* State your assumptions explicitly. If uncertain, ask.
+* If multiple interpretations exist, present them - don't pick silently.
+* If a simpler approach exists, say so. Push back when warranted.
+* If something is unclear, stop. Name what's confusing. Ask.
+
+2.Simplicity First
+Minimum code that solves the problem. Nothing speculative.
+* No features beyond what was asked.
+* No abstractions for single-use code.
+* No "flexibility" or "configurability" that wasn't requested.
+* No error handling for impossible scenarios.
+* If you write 200 lines and it could be 50, rewrite it.
+Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+
+3.Surgical Changes
+Touch only what you must. Clean up only your own mess.
+When editing existing code:
+* Don't "improve" adjacent code, comments, or formatting.
+* Don't refactor things that aren't broken.
+* Match existing style, even if you'd do it differently.
+* If you notice unrelated dead code, mention it - don't delete it.
+When your changes create orphans:
+* Remove imports/variables/functions that YOUR changes made unused.
+* Don't remove pre-existing dead code unless asked.
+The test: Every changed line should trace directly to the user's request.
+
+## 知识管理规则
+
+- 播放/工程长期知识与协作纪律放入 `../../../agent-memory/knowledge/`（知识按内容进 `业务模块/`、`工程基建/`、`排障经验/`，协作纪律进 `规则与纪律/`；索引见 `知识索引.md`）；模板放本目录 `template`；技能唯一源收于本仓库 `skills/`（Claude 市场 `sgx-skills`）。
+- 稳定、经过验证且可复用的播放知识，也要更新到 BBVideo 或相邻播放模块的工程知识库。
+- `README.md` 只承担入口和导航；详细专题放入 `doc/spec/topics`，可复用开发模板放入 `doc/spec/template`。
+- 新增、移动或删除文档时，同步更新本文件（CLAUDE.md）和最近一级工程 `README.md`。
+
+## 技能
+
+技能唯一源位于 `skills/<技能>/SKILL.md`（Claude 市场 `sgx-skills`）。
+
+修改技能后运行 `scripts/validate-skills.sh` 校验，再运行 `scripts/install-skills.sh` 安装到本机 Codex 与 Claude Code 技能目录。
+
+## 目录约定
+
+| 子目录 | 收纳内容 |
+|---|---|
+| [template](template/) | 可复用的模板：代码片段、文档模板、标准写法 |
+| [skills](skills/) | 技能唯一源：dev-workflow / bugfix-workflow / code-review / info-fetch / zhiliao（每技能含 SKILL.md） |
+
+---
+
+## template — 模板
+
+| 文档  | 摘要  |
+| --- | --- |
+| [播放模块需求分析](template/播放模块需求分析.md) | 标准路径需求分析、规范检索、代码锚点和待确认模板 |
+| [播放模块技术方案](template/播放模块技术方案.md) | 标准路径方案状态、实施步骤、风险止损和实现期变更模板 |
+
+---
+
+## skill（本仓库 skills/）
+
+| 技能 | 功能 |
+| --- | --- |
+| [dev-workflow](skills/dev-workflow/SKILL.md) | 播放需求分析、设计、开发、审查、排障、缺陷修复和知识维护总工作流 |
+| [bugfix-workflow](skills/bugfix-workflow/SKILL.md) | 基于用户日志和代码排查播放客诉 |
+| `tapd-all` | 读取 TAPD 需求与缺陷 |
+| `code-review` | 读取和审查 GitLab 合并请求 |
+| [zhiliao](skills/zhiliao/SKILL.md) | 读取知了文档（SKILL + mjs 脚本，源在笔记） |
+| `figma-cache` | 读取 Figma 设计 |
+| `fawkes-all` | CI、Config、DD、FF、APM、Laser 日志和设备能力 |
+

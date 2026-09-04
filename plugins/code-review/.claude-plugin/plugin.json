@@ -1,9 +1,0 @@
-{
-  "name": "code-review",
-  "description": "对 GitLab MR 进行 Code Review。当用户输入 MR 链接或 MRID 并说 code review、review、审查代码、帮我看看这个MR 等关键词时触发。",
-  "version": "0.1.0",
-  "author": {
-    "name": "sunguangxin",
-    "email": "sunguangxin@bilibili.com"
-  }
-}
