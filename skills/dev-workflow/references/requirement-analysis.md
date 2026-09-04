@@ -6,7 +6,7 @@
 
 把需求还原成可验证的播放业务主流程，并尽早暴露待确认项。
 
-Owner 提供原始需求 `.md` 时，必须按 `requirement-document-lifecycle.md` 在同目录创建或更新 `<需求名>+需求理解.md`，并等待 Owner 审批。没有原始需求入口时，标准路径使用 `/Users/sgx/Documents/Notes/4-Agents/sgx-dev-agent/plugins/sgx-skills/template/播放模块需求分析.md`；快速路径不强制落文档。
+Owner 提供原始需求 `.md` 时，必须按 `requirement-document-lifecycle.md` 在同目录创建或更新 `<需求名>+需求理解.md`，并等待 Owner 审批。没有原始需求入口时，标准路径使用 `/Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills/plugins/sgx-skills/template/播放模块需求分析.md`；快速路径不强制落文档。
 
 ## 输出顺序
 

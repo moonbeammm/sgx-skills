@@ -19,7 +19,7 @@ B. 知识沉淀：把用户新增笔记与昨日 Codex / Claude 会话中的可�
 - `4-Agents/agent-memory/同步状态.md`
 - `4-Agents/agent-memory/projects/项目索引.md`、`archive/归档索引.md`
 - `4-Agents/agent-memory/knowledge/知识索引.md`（播放/工程知识索引）
-- `4-Agents/待确认清单.md`（若存在：先执行其中的用户表态，再继续）
+- `4-Agents/plugins/sgx-skills/待确认清单.md`（若存在：先执行其中的用户表态，再继续）
 
 ## A. Codex 任务状态同步（维持原逻辑）
 
@@ -43,12 +43,12 @@ B. 知识沉淀：把用户新增笔记与昨日 Codex / Claude 会话中的可�
 
 - 播放业务/工程事实（接口、协议、操作手册、踩坑＝问题/根因/修复）→ `agent-memory/knowledge/` 下对应子目录（`业务模块/`、`工程基建/`、`排障经验/`、`规则与纪律/`，按内容归类）。先查重：`agent-memory/knowledge/知识索引.md` + 目录检索；有同主题只增量更新对应文档和索引摘要；无则新建文档，并把一行摘要登记进知识索引。
 - 详情页与 Story 领域知识 → 维护 `agent-memory/knowledge/业务模块/详情页-领域地图.md` 与 `业务模块/Story-领域地图.md`（有内容时才创建，并登记进知识索引）：模块职责、数据流与归属、近期改动与结论、常见坑、验收要点。
-- 可复用模板/标准写法 → `sgx-dev-agent/template`（先查重）。
+- 可复用模板/标准写法 → `4-Agents/plugins/sgx-skills/template`（先查重）。
 
 **待确认（写入待确认清单，不进正式区）：**
 
 - 行为纪律/协作约束 → 候选去向 `agent-memory/knowledge/规则与纪律/`
-- 可复用流程/新技能 → 候选去向 `sgx-dev-agent/skill`（确认后须 validate + install）
+- 可复用流程/新技能 → 候选去向 `4-Agents/plugins/sgx-skills/skills`（确认后须 validate + install）
 - 跨项目通用偏好、多次验证的决策 → `agent-memory/habits`、`decisions`
 
 **跳过：** 个人生活、一次性内容、未证实推断、敏感信息（任何情况下不写入）。
@@ -61,7 +61,7 @@ B. 知识沉淀：把用户新增笔记与昨日 Codex / Claude 会话中的可�
 - 没有新的可复用认知时，不创建文档、不扩张内容。
 - 更新任何既有文档前：先读当前文件，并用 `git diff` 检查是否存在用户手改；存在则以用户版本为基线做增量更新，禁止改回；只有逻辑冲突才写入待确认清单向用户确认。
 
-## C. 待确认清单（`4-Agents/待确认清单.md`）
+## C. 待确认清单（`4-Agents/plugins/sgx-skills/待确认清单.md`）
 
 1. 先读取清单中用户的表态并执行：
    - `[确认]` → 按"建议去向"写入正式区并更新索引（skill 需 validate-skills.sh + install-skills.sh）；

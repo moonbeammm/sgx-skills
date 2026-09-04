@@ -4,7 +4,7 @@
 
 ### 个人智能体知识
 
-知识写入 `/Users/sgx/Documents/Notes/4-Agents/agent-memory/knowledge/`（协作纪律进 `knowledge/规则与纪律/`）；模板/技能写入 `/Users/sgx/Documents/Notes/4-Agents/sgx-dev-agent`：
+知识写入 `/Users/sgx/Documents/Notes/4-Agents/agent-memory/knowledge/`（协作纪律进 `knowledge/规则与纪律/`）；模板/技能写入 `/Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills`：
 
 | 内容 | 目录 |
 |---|---|
@@ -13,7 +13,7 @@
 | 可复制模板 | `template/` |
 | 可重复执行的工作流 | `skill/` |
 
-同步更新 `agent-memory/knowledge/知识索引.md` 与 `sgx-dev-agent/CLAUDE.md` 索引。
+同步更新 `agent-memory/knowledge/知识索引.md` 与 `4-Agents/plugins/sgx-skills/CLAUDE.md` 索引。
 
 ### 团队工程知识库
 
