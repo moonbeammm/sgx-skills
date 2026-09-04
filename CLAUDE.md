@@ -67,7 +67,7 @@ The test: Every changed line should trace directly to the user's request.
 
 技能唯一源位于 `skills/<技能>/SKILL.md`（Claude 市场 `sgx-skills`）。
 
-修改技能后运行 `scripts/validate-skills.sh` 校验，再运行 `scripts/install-skills.sh` 安装到本机 Codex 与 Claude Code 技能目录。
+装载：Claude / Codex 直接 `add local` 本仓库即可（`claude plugin marketplace add local ./plugins/sgx-skills`），技能随仓库更新自动生效，无需额外安装脚本。
 
 ## 目录约定
 

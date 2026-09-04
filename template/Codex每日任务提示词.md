@@ -49,7 +49,7 @@ B. 知识沉淀：把用户新增笔记与昨日 Codex / Claude 会话中的可�
 **待确认（写入待确认清单，不进正式区）：**
 
 - 行为纪律/协作约束 → 候选去向 `/Users/sgx/Documents/Notes/4-Agents/agent-memory/knowledge/规则与纪律/`
-- 可复用流程/新技能 → 候选去向 `/Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills/skills`（确认后须运行该仓库 `scripts/validate-skills.sh` + `scripts/install-skills.sh`）
+- 可复用流程/新技能 → 候选去向 `/Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills/skills`
 - 跨项目通用偏好、多次验证的决策 → `/Users/sgx/Documents/Notes/4-Agents/agent-memory/habits`、`decisions`
 
 **跳过：** 个人生活、一次性内容、未证实推断、敏感信息（任何情况下不写入）。
@@ -65,7 +65,7 @@ B. 知识沉淀：把用户新增笔记与昨日 Codex / Claude 会话中的可�
 ## C. 待确认清单（`/Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills/待确认清单.md`）
 
 1. 先读取清单中用户的表态并执行：
-   - `[确认]` → 按"建议去向"写入正式区并更新索引（skills 类需运行 `/Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills/scripts/validate-skills.sh` + `install-skills.sh`）；
+   - `[确认]` → 按"建议去向"写入正式区并更新索引（skills 类直接写入仓库 `skills/` 并提交推送）；
    - `[修改] <备注>` → 按备注调整后写入正式区；
    - `[拒绝]` → 丢弃不写。
 2. 执行完后**清空旧清单**，把本次新产生的候选覆盖写入（条目格式：一句话候选 ＋ 证据来源 ＋ 建议去向），保持文件只显示当前待定项。
