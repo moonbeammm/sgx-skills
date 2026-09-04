@@ -43,13 +43,13 @@ B. 知识沉淀：把用户新增笔记与昨日 Codex / Claude 会话中的可�
 **直写（无需确认）：**
 
 - 播放业务/工程事实（接口、协议、操作手册、踩坑＝问题/根因/修复）→ `/Users/sgx/Documents/Notes/4-Agents/agent-memory/knowledge/` 下对应子目录（`业务模块/`、`工程基建/`、`排障经验/`、`规则与纪律/`，按内容归类）。先查重：`/Users/sgx/Documents/Notes/4-Agents/agent-memory/knowledge/知识索引.md` + 目录检索；有同主题只增量更新对应文档和索引摘要；无则新建文档，并把一行摘要登记进知识索引。
-- 详情页与 Story 领域知识 → 维护 `/Users/sgx/Documents/Notes/4-Agents/agent-memory/knowledge/业务模块/详情页-领域地图.md` 与 `业务模块/Story-领域地图.md`（有内容时才创建，并登记进知识索引）：模块职责、数据流与归属、近期改动与结论、常见坑、验收要点。
+- 详情页与 Story 领域知识 → 维护 `/Users/sgx/Documents/Notes/4-Agents/agent-memory/knowledge/业务模块/详情页-领域地图.md` 与 `/Users/sgx/Documents/Notes/4-Agents/agent-memory/knowledge/业务模块/Story-领域地图.md`（有内容时才创建，并登记进知识索引）：模块职责、数据流与归属、近期改动与结论、常见坑、验收要点。
 - 可复用模板/标准写法 → `/Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills/template`（先查重）。
 
 **待确认（写入待确认清单，不进正式区）：**
 
 - 行为纪律/协作约束 → 候选去向 `/Users/sgx/Documents/Notes/4-Agents/agent-memory/knowledge/规则与纪律/`
-- 可复用流程/新技能 → 候选去向 `/Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills/skills`
+- 可复用流程/新技能 → 候选去向 `/Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills/skills`（确认后：新建 `skills/<技能>/SKILL.md`，登记进该仓库 `.claude-plugin/plugin.json` 的 skills 列表与 CLAUDE.md 技能表，再 `git push`——市场 add local 侧随仓库更新自动生效）
 - 跨项目通用偏好、多次验证的决策 → `/Users/sgx/Documents/Notes/4-Agents/agent-memory/habits`、`decisions`
 
 **跳过：** 个人生活、一次性内容、未证实推断、敏感信息（任何情况下不写入）。
@@ -65,7 +65,7 @@ B. 知识沉淀：把用户新增笔记与昨日 Codex / Claude 会话中的可�
 ## C. 待确认清单（`/Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills/待确认清单.md`）
 
 1. 先读取清单中用户的表态并执行：
-   - `[确认]` → 按"建议去向"写入正式区并更新索引（skills 类直接写入仓库 `skills/` 并提交推送）；
+   - `[确认]` → 按"建议去向"写入正式区并更新索引（skills 类：写入仓库 `skills/<技能>/` + 登记 `.claude-plugin/plugin.json` + 更新 CLAUDE.md 技能表，然后 `git push`）；
    - `[修改] <备注>` → 按备注调整后写入正式区；
    - `[拒绝]` → 丢弃不写。
 2. 执行完后**清空旧清单**，把本次新产生的候选覆盖写入（条目格式：一句话候选 ＋ 证据来源 ＋ 建议去向），保持文件只显示当前待定项。
