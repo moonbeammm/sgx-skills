@@ -1,0 +1,9 @@
+{
+  "name": "dev-workflow",
+  "description": "Use when：处理需求开发、技术方案、任务拆分、任务实现时使用。关键词：需求、TAPD。",
+  "version": "0.1.0",
+  "author": {
+    "name": "sunguangxin",
+    "email": "sunguangxin@bilibili.com"
+  }
+}

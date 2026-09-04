@@ -1,0 +1,9 @@
+{
+  "name": "bugfix-workflow",
+  "description": "用于结合 mid、buvid、设备日志和源代码，排查播放用户反馈、客诉、设备特定故障，或间歇出现的 Story、视频详情页、播放器、弹幕、投屏、缓存、网络和播放行为问题时。",
+  "version": "0.1.0",
+  "author": {
+    "name": "sunguangxin",
+    "email": "sunguangxin@bilibili.com"
+  }
+}

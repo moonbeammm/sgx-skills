@@ -1,0 +1,4 @@
+interface:
+  display_name: "播放业务研发负责人工作流"
+  short_description: "覆盖播放需求文档、Owner 审批、开发、验收和 Bugs 闭环"
+  default_prompt: "使用 $dev-workflow 从原始需求入口恢复进度，按需求理解、Spec、Task 审批后开发，并维护 Owner 验收与 Bugs 闭环。"

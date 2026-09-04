@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Review"
+  short_description: "审查代码变更并输出按严重级别排序的问题清单与修复建议"
+  default_prompt: "使用 $code-review 对当前代码变更做一次工程化审查，优先找出功能缺陷、回归风险、边界条件和测试缺口，并给出可执行建议。"

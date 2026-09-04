@@ -1,0 +1,68 @@
+{
+  "spaces": {
+    "sp_vPCn32k1BN": {
+      "name": "移动技术部",
+      "spaceType": 1
+    },
+    "sp_xJV4hNNmY8": {
+      "name": "用户技术中心",
+      "spaceType": 1
+    },
+    "sp_i5nVlq3CSz": {
+      "name": "凉茶的空间",
+      "spaceType": 2
+    },
+    "sp_8HJma5SdqR": {
+      "name": "AiMinions",
+      "spaceType": 1
+    }
+  },
+  "folders": {
+    "fd_X8pqxPZy6t": {
+      "name": "/",
+      "spaceId": "sp_kkcYx9widi",
+      "parentId": null
+    },
+    "fd_grJOEbdfuO": {
+      "name": "述职报告",
+      "spaceId": "sp_YYRo5rYpYz",
+      "parentId": null
+    },
+    "fd_2q75ugZetK": {
+      "name": "工作",
+      "spaceId": "sp_d47R5sdhhv",
+      "parentId": null
+    },
+    "fd_xZvPS2eOm7": {
+      "name": "我的需求",
+      "spaceId": "sp_YcPbPqlO3K",
+      "parentId": null
+    }
+  },
+  "documents": [
+    {
+      "title": "技术IC/DRI述职报告（26H1）Tiny",
+      "documentId": "doc_psg2yIRE5DIPMb4wIVgF",
+      "spaceId": "sp_kkcYx9widi",
+      "folderId": "fd_X8pqxPZy6t"
+    },
+    {
+      "title": "技术IC/DRI述职报告（26H1）",
+      "documentId": "doc_whAwmYFxVxYbOU3EUuwE",
+      "spaceId": "sp_YYRo5rYpYz",
+      "folderId": "fd_grJOEbdfuO"
+    },
+    {
+      "title": "【VT/DAU】【播放器简化】Story合集、分P、漫剧体验优化",
+      "documentId": "doc_2sE7w78PXJiqqU4JdH7v",
+      "spaceId": "sp_d47R5sdhhv",
+      "folderId": "fd_2q75ugZetK"
+    },
+    {
+      "title": "【VT/DAU】【播放器简化】Story合集、分P、漫剧体验优化",
+      "documentId": "doc_O5M7etPmV9zzuc868gKC",
+      "spaceId": "sp_YcPbPqlO3K",
+      "folderId": "fd_xZvPS2eOm7"
+    }
+  ]
+}
