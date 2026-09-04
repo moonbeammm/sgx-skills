@@ -6,7 +6,7 @@
 
 先用一段流程描述数据如何进入系统、由谁持有、何时驱动 UI 或播放器。用户确认主流程后，再展开节点细节。
 
-Owner 提供原始需求 `.md` 时，只能在 `+需求理解.md` 获批后按 `requirement-document-lifecycle.md` 创建同目录 `<需求名>+spec.md`。没有原始需求入口时，标准路径使用 `/Users/sgx/Documents/Notes/4-Agents/sgx-dev-agent/template/播放模块技术方案.md`。方案状态必须是：草稿、待 Owner 审批、已审批、存在实施前确认或实现期更新。
+Owner 提供原始需求 `.md` 时，只能在 `+需求理解.md` 获批后按 `requirement-document-lifecycle.md` 创建同目录 `<需求名>+spec.md`。没有原始需求入口时，标准路径使用 `/Users/sgx/Documents/Notes/4-Agents/sgx-dev-agent/plugins/sgx-skills/template/播放模块技术方案.md`。方案状态必须是：草稿、待 Owner 审批、已审批、存在实施前确认或实现期更新。
 
 ## 方案结构
 
