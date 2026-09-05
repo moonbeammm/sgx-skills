@@ -1,0 +1,4 @@
+interface:
+  display_name: "KNTR iOS Stability Analyst"
+  short_description: "审计 iOS 崩溃、内存、并发、跨语言与结构稳定性风险"
+  default_prompt: "Use $analyze-ios-stability to audit this KNTR iOS code path and produce evidence-backed risks, fixes, and validation steps."

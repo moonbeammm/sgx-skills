@@ -19,6 +19,8 @@
     "./skills/dev/bugfix-workflow",
     "./skills/tools/code-review",
     "./skills/tools/info-fetch",
-    "./skills/tools/zhiliao"
+    "./skills/tools/zhiliao",
+    "./skills/in-progress/bilibili-ios-trace-analysis",
+    "./skills/in-progress/analyze-ios-stability"
   ]
 }

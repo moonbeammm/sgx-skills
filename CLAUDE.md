@@ -32,7 +32,7 @@
 
 ## 技能
 
-技能唯一源位于 `skills/<分类>/<技能>/SKILL.md`（`dev/`：开发工作流；`tools/`：工具/知识读取；Claude 市场 `sgx-skills`）。
+技能唯一源位于 `skills/<分类>/<技能>/SKILL.md`（`dev/`：开发工作流；`tools/`：工具/知识读取；`in-progress/`：待确认草案；Claude 市场 `sgx-skills`）。
 
 装载：Claude Code → `claude plugin marketplace add /Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills`；Codex 桌面端（最新版已支持）→ 直接 `add local` 本仓库路径。技能随仓库更新自动生效，无需安装脚本或软链。
 
@@ -41,7 +41,7 @@
 | 子目录 | 收纳内容 |
 |---|---|
 | [template](template/) | 可复用的模板：代码片段、文档模板、标准写法 |
-| [skills](skills/) | 技能唯一源（每技能含 SKILL.md）：`dev/`：dev-workflow、bugfix-workflow；`tools/`：code-review、info-fetch、zhiliao |
+| [skills](skills/) | 技能唯一源（每技能含 SKILL.md）：`dev/`：dev-workflow、bugfix-workflow；`tools/`：code-review、info-fetch、zhiliao；`in-progress/`：bilibili-ios-trace-analysis、analyze-ios-stability（草案） |
 
 ---
 
@@ -63,6 +63,8 @@
 | `tapd-all` | 读取 TAPD 需求与缺陷 |
 | `code-review` | 读取和审查 GitLab 合并请求 |
 | [zhiliao](4-Agents/plugins/sgx-skills/skills/tools/zhiliao/SKILL.md) | 读取知了文档（SKILL + mjs 脚本，源在笔记） |
+| [bilibili-ios-trace-analysis](4-Agents/plugins/sgx-skills/skills/in-progress/bilibili-ios-trace-analysis/SKILL.md) | in-progress：B 站 iOS Instruments .trace 分析（卡顿/挂起/死锁/内存分诊与报告） |
+| [analyze-ios-stability](4-Agents/plugins/sgx-skills/skills/in-progress/analyze-ios-stability/SKILL.md) | in-progress：KNTR iOS 跨语言稳定性审计（崩溃/内存/死锁证据排查） |
 | `figma-cache` | 读取 Figma 设计 |
 | `fawkes-all` | CI、Config、DD、FF、APM、Laser 日志和设备能力 |
 

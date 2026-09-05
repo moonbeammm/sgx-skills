@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bilibili iOS Trace & Hang Analysis"
+  short_description: "Analyze iOS traces for memory, hangs, and deadlocks."
+  default_prompt: "Use $bilibili-ios-trace-analysis to diagnose this iOS trace using the current Codex working directory as the source root."
