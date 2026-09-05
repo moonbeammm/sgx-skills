@@ -1,18 +1,24 @@
 {
   "name": "sgx-skills",
   "version": "0.1.0",
-  "description": "sgx 定制播放研发 agent：工作流/排查/文档/知了技能集（Claude Code 技能市场）",
+  "description": "日常研发与BUG排查的agent技能集。",
   "author": {
     "name": "sunguangxin",
     "email": "sunguangxin@bilibili.com"
   },
   "repository": "https://github.com/moonbeammm/sgx-skills",
   "license": "UNLICENSED",
+  "keywords": [
+    "engineering",
+    "skills",
+    "code-review",
+    "grilling"
+  ],
   "skills": [
-    "./skills/dev-workflow",
-    "./skills/bugfix-workflow",
-    "./skills/code-review",
-    "./skills/info-fetch",
-    "./skills/zhiliao"
+    "./skills/dev/dev-workflow",
+    "./skills/dev/bugfix-workflow",
+    "./skills/tools/code-review",
+    "./skills/tools/info-fetch",
+    "./skills/tools/zhiliao"
   ]
 }

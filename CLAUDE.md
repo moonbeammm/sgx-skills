@@ -1,7 +1,7 @@
 ## 工作规则
 
 - 如果有不清楚的地方，使用grill-me一个一个向我提问，直到你完全理解我的需求。
-- 处理播放任务先检索 `../../memory/knowledge/知识索引.md` 命中专题（领域地图 / 踩坑 / 协议 / 结论）再动笔或提问；库中已有结论直接引用，不重复向用户提问。
+- 处理播放任务先检索 `../../memory/knowledge/INDEX.md` 命中专题（领域地图 / 踩坑 / 协议 / 结论）再动笔或提问；库中已有结论直接引用，不重复向用户提问。
 - 只有尚未解决的选择会改变产品行为或技术范围时才询问用户。
 - 小修改保持直接和最小。
 - 目标明确、修改局部、风险较低时使用快速路径，不强制创建完整需求和方案文档。
@@ -25,14 +25,14 @@
 
 ## 知识管理规则
 
-- 播放/工程长期知识与协作纪律放入 `../../memory/knowledge/`（知识按内容进 `业务模块/`、`工程基建/`、`排障经验/`，协作纪律进 `规则与纪律/`；索引见 `知识索引.md`）；模板放本目录 `template`；技能唯一源收于本仓库 `skills/`（Claude 市场 `sgx-skills`）。
+- 播放/工程长期知识与协作纪律放入 `../../memory/knowledge/`（知识按内容进 `业务模块/`、`工程基建/`、`排障经验/`，协作纪律进 `规则与纪律/`；索引见 `INDEX.md`）；模板放本目录 `template`；技能唯一源收于本仓库 `skills/`（Claude 市场 `sgx-skills`）。
 - 稳定、经过验证且可复用的播放知识，也要更新到 BBVideo 或相邻播放模块的工程知识库。
 - `README.md` 只承担入口和导航；详细专题放入 `doc/spec/topics`，可复用开发模板放入 `doc/spec/template`。
 - 新增、移动或删除文档时，同步更新本文件（CLAUDE.md）和最近一级工程 `README.md`。
 
 ## 技能
 
-技能唯一源位于 `skills/<技能>/SKILL.md`（Claude 市场 `sgx-skills`）。
+技能唯一源位于 `skills/<分类>/<技能>/SKILL.md`（`dev/`：开发工作流；`tools/`：工具/知识读取；Claude 市场 `sgx-skills`）。
 
 装载：Claude Code → `claude plugin marketplace add /Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills`；Codex 桌面端（最新版已支持）→ 直接 `add local` 本仓库路径。技能随仓库更新自动生效，无需安装脚本或软链。
 
@@ -41,7 +41,7 @@
 | 子目录 | 收纳内容 |
 |---|---|
 | [template](template/) | 可复用的模板：代码片段、文档模板、标准写法 |
-| [skills](skills/) | 技能唯一源：dev-workflow / bugfix-workflow / code-review / info-fetch / zhiliao（每技能含 SKILL.md） |
+| [skills](skills/) | 技能唯一源（每技能含 SKILL.md）：`dev/`：dev-workflow、bugfix-workflow；`tools/`：code-review、info-fetch、zhiliao |
 
 ---
 
@@ -58,11 +58,11 @@
 
 | 技能 | 功能 |
 | --- | --- |
-| [dev-workflow](skills/dev-workflow/SKILL.md) | 播放需求分析、设计、开发、审查、排障、缺陷修复和知识维护总工作流 |
-| [bugfix-workflow](skills/bugfix-workflow/SKILL.md) | 基于用户日志和代码排查播放客诉 |
+| [dev-workflow](4-Agents/plugins/sgx-skills/skills/dev/dev-workflow/SKILL.md) | 播放需求分析、设计、开发、审查、排障、缺陷修复和知识维护总工作流 |
+| [bugfix-workflow](4-Agents/plugins/sgx-skills/skills/dev/bugfix-workflow/SKILL.md) | 基于用户日志和代码排查播放客诉 |
 | `tapd-all` | 读取 TAPD 需求与缺陷 |
 | `code-review` | 读取和审查 GitLab 合并请求 |
-| [zhiliao](skills/zhiliao/SKILL.md) | 读取知了文档（SKILL + mjs 脚本，源在笔记） |
+| [zhiliao](4-Agents/plugins/sgx-skills/skills/tools/zhiliao/SKILL.md) | 读取知了文档（SKILL + mjs 脚本，源在笔记） |
 | `figma-cache` | 读取 Figma 设计 |
 | `fawkes-all` | CI、Config、DD、FF、APM、Laser 日志和设备能力 |
 

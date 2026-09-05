@@ -1,24 +1,23 @@
 {
-  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "sgx-skills",
   "version": "0.1.0",
-  "tags": [
-    "播放",
-    "研发",
-    "个人"
-  ],
-  "description": "sgx 定制 agent 技能市场",
+  "name": "sgx-skills",
   "owner": {
     "name": "sunguangxin",
     "url": "https://github.com/moonbeammm"
   },
+  "description": "日常研发与BUG排查的agent技能集。",
   "plugins": [
     {
       "name": "sgx-skills",
       "source": "./",
-      "description": "sgx 定制播放研发 agent 技能集（dev-workflow 等 5 个）",
+      "description": "日常研发与BUG排查的agent技能集（dev-workflow、bugfix-workflow等...）",
       "category": "development",
-      "strict": false
+      "keywords": [
+        "engineering",
+        "skills",
+        "code-review",
+        "grilling"
+      ]
     }
   ]
 }

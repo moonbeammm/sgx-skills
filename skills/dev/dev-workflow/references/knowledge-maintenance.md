@@ -11,9 +11,9 @@
 | 业务知识、具体 Bug、操作手册 | `memory/knowledge/`（按 业务模块/工程基建/排障经验/规则与纪律 归类） |
 | 编程纪律、协作规则 | `memory/knowledge/规则与纪律/` |
 | 可复制模板 | `template/` |
-| 可重复执行的工作流 | `skill/` |
+| 可重复执行的工作流 | `skills/`（按 `dev/`、`tools/` 分类） |
 
-同步更新 `memory/knowledge/知识索引.md` 与 `4-Agents/plugins/sgx-skills/CLAUDE.md` 索引。
+同步更新 `memory/knowledge/INDEX.md` 与 `4-Agents/plugins/sgx-skills/CLAUDE.md` 索引。
 
 ### 团队工程知识库
 
