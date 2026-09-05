@@ -23,39 +23,6 @@
 - 新会话开始时请告知我你读取了那些文档。
 - 我手改优先：我直接修改过 AI 生成的文档（内容与 AI 上次写入不一致）时，以我修改后的版本为准，禁止改回；只有发现逻辑冲突时才向我确认后再处理。
 
-# 必须遵守
-
-0.永远用中文回答我
-
-1.Think Before Coding
-Don't assume. Don't hide confusion. Surface tradeoffs.
-Before implementing:
-* State your assumptions explicitly. If uncertain, ask.
-* If multiple interpretations exist, present them - don't pick silently.
-* If a simpler approach exists, say so. Push back when warranted.
-* If something is unclear, stop. Name what's confusing. Ask.
-
-2.Simplicity First
-Minimum code that solves the problem. Nothing speculative.
-* No features beyond what was asked.
-* No abstractions for single-use code.
-* No "flexibility" or "configurability" that wasn't requested.
-* No error handling for impossible scenarios.
-* If you write 200 lines and it could be 50, rewrite it.
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
-
-3.Surgical Changes
-Touch only what you must. Clean up only your own mess.
-When editing existing code:
-* Don't "improve" adjacent code, comments, or formatting.
-* Don't refactor things that aren't broken.
-* Match existing style, even if you'd do it differently.
-* If you notice unrelated dead code, mention it - don't delete it.
-When your changes create orphans:
-* Remove imports/variables/functions that YOUR changes made unused.
-* Don't remove pre-existing dead code unless asked.
-The test: Every changed line should trace directly to the user's request.
-
 ## 知识管理规则
 
 - 播放/工程长期知识与协作纪律放入 `../../agent-memory/knowledge/`（知识按内容进 `业务模块/`、`工程基建/`、`排障经验/`，协作纪律进 `规则与纪律/`；索引见 `知识索引.md`）；模板放本目录 `template`；技能唯一源收于本仓库 `skills/`（Claude 市场 `sgx-skills`）。
@@ -67,7 +34,7 @@ The test: Every changed line should trace directly to the user's request.
 
 技能唯一源位于 `skills/<技能>/SKILL.md`（Claude 市场 `sgx-skills`）。
 
-装载：Claude / Codex 直接 `add local` 本仓库即可（`claude plugin marketplace add local ./plugins/sgx-skills`），技能随仓库更新自动生效，无需额外安装脚本。
+装载：Claude Code → `claude plugin marketplace add /Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills`；Codex 桌面端（最新版已支持）→ 直接 `add local` 本仓库路径。技能随仓库更新自动生效，无需安装脚本或软链。
 
 ## 目录约定
 
