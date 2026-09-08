@@ -20,7 +20,7 @@
 
 ## C. 提问纪律
 
-- R8 动笔前检索顺序：知识索引（`memory/knowledge/INDEX.md`）命中专题 → 对应文档全文 → 工程 `doc/README` → 代码。检索范围含个人笔记库与播放知识库，不只代码库。
+- R8 动笔前检索顺序：先读取 `/Users/sgx/Documents/Notes/4-Agents/memory/BOOTSTRAP.md`，再按任务关键词和 `project:bilibili-client` 调用 `/Users/sgx/Documents/Notes/4-Agents/memory/tools/lookup`；只把 `facts.jsonl` 当前有效事实作为依据，再读对应原始文档 → 工程 `doc/README` → 代码。`INDEX.md` 只做导航；旧的 `memory/knowledge/` 路径不是事实库，不能写入或引用。
 - R9 只允许问：会改变行为 / 方案 / 范围、且两库 + 代码都查不到答案的问题；问题必须附"已查过什么、为什么查不到"。
 - R10 能从代码 / 两库确认的结论，禁止提问，直接写断言 + 出处。
 

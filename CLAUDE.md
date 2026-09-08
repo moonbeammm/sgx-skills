@@ -1,7 +1,9 @@
 ## 工作规则
 
 - 如果有不清楚的地方，使用grill-me一个一个向我提问，直到你完全理解我的需求。
-- 处理播放任务先检索 `../../memory/knowledge/INDEX.md` 命中专题（领域地图 / 踩坑 / 协议 / 结论）再动笔或提问；库中已有结论直接引用，不重复向用户提问。
+- 每个工作流先读取 `/Users/sgx/Documents/Notes/4-Agents/memory/BOOTSTRAP.md` 并调用 `/Users/sgx/Documents/Notes/4-Agents/memory/tools/lookup`；首条回复给出命中、未命中、冲突或读取失败回执。
+- 处理开发、Bug、Review、技术方案时按任务关键词和 `project:bilibili-client` 深检索；命中事实按启动协议标注 ID、库内位置和原始来源。
+- 只把 `facts.jsonl` 的当前有效事实作为依据；`pending.jsonl`、推测、冲突和来源不完整内容不得当事实。
 - 只有尚未解决的选择会改变产品行为或技术范围时才询问用户。
 - 小修改保持直接和最小。
 - 目标明确、修改局部、风险较低时使用快速路径，不强制创建完整需求和方案文档。
@@ -11,6 +13,7 @@
 - 保护用户已有且与当前任务无关的修改。
 - iOS 需求开发默认不新增 XCTest 源文件或测试 target，也不把新增 XCTest 作为完成条件；只有 Owner 明确要求时才编写。通用 TDD 或测试技能不得覆盖该约束。
 - 交付时检查是否存在自进化信号。没有新的可复用认知时，不创建文档、不扩张规则。
+- `dev-workflow`、`bugfix-workflow` 每次触发都按 `skills/dev/session-recording.md` 维护一个受管的会话续接区；这是“没有长期新认知时不创建普通知识文档”的明确例外。该受管区不要求同步本文件或 README，由用户负责任务完成后的移动。
 - 任务过程中维护一份精简的实际使用清单，只记录真正遵循的技能，以及实际影响分析、决策、实现或验证的非技能文档。
 - 修改核心身份、权限、主要技能工作流或工程知识库前，必须获得用户批准。
 - 修改完代码不需要进行编译，我主动说编译验证时再编译。
@@ -25,16 +28,17 @@
 
 ## 知识管理规则
 
-- 播放/工程长期知识与协作纪律放入 `../../memory/knowledge/`（知识按内容进 `业务模块/`、`工程基建/`、`排障经验/`，协作纪律进 `规则与纪律/`；索引见 `INDEX.md`）；模板放本目录 `template`；技能唯一源收于本仓库 `skills/`（Claude 市场 `sgx-skills`）。
-- 稳定、经过验证且可复用的播放知识，也要更新到 BBVideo 或相邻播放模块的工程知识库。
+- 长期事实唯一写入 `/Users/sgx/Documents/Notes/4-Agents/memory/facts.jsonl`；未确认候选写入同目录的 `pending.jsonl`。模板放本目录 `template`；技能唯一源收于本仓库 `skills/`（Claude 市场 `sgx-skills`）。
+- 稳定、经过验证且可复用的播放知识可同步到 BBVideo 或相邻模块的非权威工程文档；长期事实仍以 `memory/facts.jsonl` 为唯一权威源。
 - `README.md` 只承担入口和导航；详细专题放入 `doc/spec/topics`，可复用开发模板放入 `doc/spec/template`。
 - 新增、移动或删除文档时，同步更新本文件（CLAUDE.md）和最近一级工程 `README.md`。
+- 上一条不适用于 `session-recording` 协议创建或更新的根目录会话文档及其 AI 管理区；这些文档按该协议维护，不自动改本文件或 README。
 
 ## 技能
 
 技能唯一源位于 `skills/<分类>/<技能>/SKILL.md`（`dev/`：开发工作流；`tools/`：工具/知识读取；`in-progress/`：待确认草案；Claude 市场 `sgx-skills`）。
 
-装载：Claude Code → `claude plugin marketplace add /Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills`；Codex 桌面端（最新版已支持）→ 直接 `add local` 本仓库路径。技能随仓库更新自动生效，无需安装脚本或软链。
+装载：Claude Code → `claude plugin marketplace add /Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills`；Codex 桌面端（最新版已支持）→ 直接 `add local` 本仓库路径。使用本地源时重载/重启会话后生效；若运行时仍使用已缓存版本，需重新加载本地插件，不要直接编辑缓存副本。
 
 ## 目录约定
 
@@ -42,6 +46,7 @@
 |---|---|
 | [template](template/) | 可复用的模板：代码片段、文档模板、标准写法 |
 | [skills](skills/) | 技能唯一源（每技能含 SKILL.md）：`dev/`：dev-workflow、bugfix-workflow；`tools/`：code-review、info-fetch、zhiliao；`in-progress/`：bilibili-ios-trace-analysis、analyze-ios-stability（草案） |
+| [session-recording](skills/dev/session-recording.md) | `dev-workflow` 与 `bugfix-workflow` 共用的会话续接、recorder 和日更引用协议 |
 
 ---
 
@@ -67,4 +72,3 @@
 | [analyze-ios-stability](4-Agents/plugins/sgx-skills/skills/in-progress/analyze-ios-stability/SKILL.md) | in-progress：KNTR iOS 跨语言稳定性审计（崩溃/内存/死锁证据排查） |
 | `figma-cache` | 读取 Figma 设计 |
 | `fawkes-all` | CI、Config、DD、FF、APM、Laser 日志和设备能力 |
-

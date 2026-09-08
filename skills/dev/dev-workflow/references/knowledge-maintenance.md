@@ -4,16 +4,17 @@
 
 ### 个人智能体知识
 
-知识写入 `/Users/sgx/Documents/Notes/4-Agents/memory/knowledge/`（协作纪律进 `knowledge/规则与纪律/`）；模板/技能写入 `/Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills`：
+长期事实唯一写入 `/Users/sgx/Documents/Notes/4-Agents/memory/facts.jsonl`；推断、冲突或来源不完整的候选写入同目录 `pending.jsonl`，更正和处理记录写入 `events.jsonl`。按 `BOOTSTRAP.md` 规定的 schema、来源定位和幂等规则维护；会话工作流及后台 recorder 不直接写这些账本，每日 08:00 任务负责提炼和回填 `AI_KB_LINKS`。
 
-| 内容 | 目录 |
+| 内容 | 位置 |
 |---|---|
-| 业务知识、具体 Bug、操作手册 | `memory/knowledge/`（按 业务模块/工程基建/排障经验/规则与纪律 归类） |
-| 编程纪律、协作规则 | `memory/knowledge/规则与纪律/` |
+| 已确认/可复现事实 | `memory/facts.jsonl` |
+| 待确认候选 | `memory/pending.jsonl` |
+| 更正、撤回和同步事件 | `memory/events.jsonl` |
 | 可复制模板 | `template/` |
 | 可重复执行的工作流 | `skills/`（按 `dev/`、`tools/` 分类） |
 
-同步更新 `memory/knowledge/INDEX.md` 与 `4-Agents/plugins/sgx-skills/CLAUDE.md` 索引。
+`INDEX.md` 只承担导航；不要创建或引用旧的 `memory/knowledge/` 目录，也不要把 AI 会话快照当事实来源。
 
 ### 团队工程知识库
 

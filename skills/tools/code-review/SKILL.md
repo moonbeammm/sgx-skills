@@ -15,6 +15,8 @@ allowed_tools:
 
 帮助用户对 GitLab (git.bilibili.co) 上的 MR 进行自动化代码审查并添加评论。
 
+开始审查前先读取 `/Users/sgx/Documents/Notes/4-Agents/memory/BOOTSTRAP.md`，按模块、需求和风险关键词调用 `/Users/sgx/Documents/Notes/4-Agents/memory/tools/lookup`；第一条回复回执检索状态。命中事实必须标注 ID、库内位置和来源；知识库内容只作为证据之一，仍以当前 MR、代码和需求为准。
+
 ## 权限
 
 **允许**：✅ 读取 GitLab 信息（GET）| 添加 MR 评论 | 添加行内评论 | git fetch/diff/log/show

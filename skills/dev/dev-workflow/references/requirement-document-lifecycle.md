@@ -9,6 +9,7 @@
 - Owner 维护需求正文。
 - Agent 维护进度索引。
 - 新会话先读总入口，再按索引读取衍生文档并恢复下一步。
+- 若同时使用 `session-recording.md`，Notes 内原始需求文件仍是主文档；Notes 外原始文档默认只读，记录主文档在 Notes 根目录（用户明确授权时才可原地维护外部原文）。`AGENT_PROGRESS` 与 `AI_SESSION_RECORD`、`AI_KB_LINKS` 是互不嵌套的独立机器区。前者由主 agent 维护，后两者分别由 recorder（失败时主 agent 回退）和每日任务维护，不得互相覆盖。
 
 ## 文件命名
 
@@ -66,6 +67,7 @@ Agent 不改写、重排或删除 Owner 正文，只维护文件末尾以下标�
 - 最近进展倒序、精简记录，不复制 Task 详情。
 - 创建文档、Owner 审批、Task 状态变化、验证完成、Bug 修复或方案更新后，同一轮更新索引。
 - 索引和衍生文档不一致时，以 Owner 最新指令和衍生文档实际状态为准，并立即修正索引。
+- `AGENT_PROGRESS` 的 marker 只能由主 agent 更新；不得把 `AI_SESSION_RECORD` 或 `AI_KB_LINKS` 插入其内部。会话区统一按 `session-recording.md` 追加在文件末尾并保持三类机器 marker 成对、唯一。
 
 ## 三份前置文档
 
