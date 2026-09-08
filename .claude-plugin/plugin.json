@@ -1,6 +1,6 @@
 {
   "name": "sgx-skills",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "日常研发与BUG排查的agent技能集。",
   "author": {
     "name": "sunguangxin",
