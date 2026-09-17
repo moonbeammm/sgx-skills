@@ -3,7 +3,7 @@
 - 如果有不清楚的地方，使用grill-me一个一个向我提问，直到你完全理解我的需求。
 - 每个工作流先读取 `/Users/sgx/Documents/Notes/4-Agents/memory/BOOTSTRAP.md` 并调用 `/Users/sgx/Documents/Notes/4-Agents/memory/tools/lookup`；首条回复给出命中、未命中、冲突或读取失败回执。
 - 处理开发、Bug、Review、技术方案时按任务关键词和 `project:bilibili-client` 深检索；命中事实按启动协议标注 ID、库内位置和原始来源。
-- 只把 `facts.jsonl` 的当前有效事实作为依据；`pending.jsonl`、推测、冲突和来源不完整内容不得当事实。
+- 只把 `facts.jsonl` 的当前有效事实和 `relations.jsonl` 中证据充分的关系作为依据；`pending.jsonl`、推测、冲突、预测和来源不完整内容不得当事实或正式关系。需要追查决策结果时使用 `lookup --include-relations`，并标注直接命中或关联命中的 provenance。
 - 只有尚未解决的选择会改变产品行为或技术范围时才询问用户。
 - 小修改保持直接和最小。
 - 目标明确、修改局部、风险较低时使用快速路径，不强制创建完整需求和方案文档。
@@ -34,7 +34,7 @@
 
 ## 知识管理规则
 
-- 长期事实唯一写入 `/Users/sgx/Documents/Notes/4-Agents/memory/facts.jsonl`；未确认候选写入同目录的 `pending.jsonl`。模板放本目录 `template`；技能唯一源收于本仓库 `skills/`（Claude 市场 `sgx-skills`）。
+- 长期事实唯一写入 `/Users/sgx/Documents/Notes/4-Agents/memory/facts.jsonl`；已确认的决策、结果和观察可用 `kind` 节点表示，已证实关系写入同目录的 `relations.jsonl`，未确认候选写入 `pending.jsonl`。关系必须遵守 `memory/CAUSAL-MEMORY.md` 的证据门禁。模板放本目录 `template`；技能唯一源收于本仓库 `skills/`（Claude 市场 `sgx-skills`）。
 - 稳定、经过验证且可复用的播放知识可同步到 BBVideo 或相邻模块的非权威工程文档；长期事实仍以 `memory/facts.jsonl` 为唯一权威源。
 - `README.md` 只承担入口和导航；详细专题放入 `doc/spec/topics`，可复用开发模板放入 `doc/spec/template`。
 - 新增、移动或删除文档时，同步更新本文件（CLAUDE.md）和最近一级工程 `README.md`。
@@ -53,6 +53,7 @@
 | [template](template/) | 可复用的模板：代码片段、文档模板、标准写法 |
 | [skills](skills/) | 技能唯一源（每技能含 SKILL.md）：`dev/`：dev-workflow、bugfix-workflow；`tools/`：code-review、info-fetch、zhiliao；`in-progress/`：bilibili-ios-trace-analysis、analyze-ios-stability（草案） |
 | [session-recording](skills/dev/session-recording.md) | `dev-workflow` 与 `bugfix-workflow` 共用的会话续接、recorder 和日更引用协议 |
+| [CAUSAL-MEMORY](../../memory/CAUSAL-MEMORY.md) | 决策、结果、关系边和证据门禁 |
 
 ---
 
@@ -69,12 +70,12 @@
 
 | 技能 | 功能 |
 | --- | --- |
-| [dev-workflow](4-Agents/plugins/sgx-skills/skills/dev/dev-workflow/SKILL.md) | 播放需求分析、设计、开发、审查、排障、缺陷修复和知识维护总工作流 |
-| [bugfix-workflow](4-Agents/plugins/sgx-skills/skills/dev/bugfix-workflow/SKILL.md) | 基于用户日志和代码排查播放客诉 |
+| [dev-workflow](skills/dev/dev-workflow/SKILL.md) | 播放需求分析、设计、开发、审查、排障、缺陷修复和知识维护总工作流 |
+| [bugfix-workflow](skills/dev/bugfix-workflow/SKILL.md) | 基于用户日志和代码排查播放客诉 |
 | `tapd-all` | 读取 TAPD 需求与缺陷 |
 | `code-review` | 读取和审查 GitLab 合并请求 |
-| [zhiliao](4-Agents/plugins/sgx-skills/skills/tools/zhiliao/SKILL.md) | 读取知了文档（SKILL + mjs 脚本，源在笔记） |
-| [bilibili-ios-trace-analysis](4-Agents/plugins/sgx-skills/skills/in-progress/bilibili-ios-trace-analysis/SKILL.md) | in-progress：B 站 iOS Instruments .trace 分析（卡顿/挂起/死锁/内存分诊与报告） |
-| [analyze-ios-stability](4-Agents/plugins/sgx-skills/skills/in-progress/analyze-ios-stability/SKILL.md) | in-progress：KNTR iOS 跨语言稳定性审计（崩溃/内存/死锁证据排查） |
+| [zhiliao](skills/tools/zhiliao/SKILL.md) | 读取知了文档（SKILL + mjs 脚本，源在笔记） |
+| [bilibili-ios-trace-analysis](skills/in-progress/bilibili-ios-trace-analysis/SKILL.md) | in-progress：B 站 iOS Instruments .trace 分析（卡顿/挂起/死锁/内存分诊与报告） |
+| [analyze-ios-stability](skills/in-progress/analyze-ios-stability/SKILL.md) | in-progress：KNTR iOS 跨语言稳定性审计（崩溃/内存/死锁证据排查） |
 | `figma-cache` | 读取 Figma 设计 |
 | `fawkes-all` | CI、Config、DD、FF、APM、Laser 日志和设备能力 |

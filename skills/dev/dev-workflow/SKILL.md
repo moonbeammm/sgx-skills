@@ -18,7 +18,7 @@ description: Use when 处理 Bilibili 客户端需求开发、技术方案、任
 - 达到完成条件后立即交付；历史回填、全量扫描、整包构建和端到端模型测试不自动追加。
 - 最终报告必须分别列出已修改、未修改、已验证、未验证和下一步；“未验证”不得写成“完成”。
 
-开始任务前先读取 `/Users/sgx/Documents/Notes/4-Agents/memory/BOOTSTRAP.md`，按任务关键词和 `project:bilibili-client` 调用 `/Users/sgx/Documents/Notes/4-Agents/memory/tools/lookup`，并在第一条回复回执检索状态。命中事实必须标注 ID、库内位置和来源；未命中、冲突或读取失败按启动协议处理。
+开始任务前先读取 `/Users/sgx/Documents/Notes/4-Agents/memory/BOOTSTRAP.md`，按任务关键词和 `project:bilibili-client` 调用 `/Users/sgx/Documents/Notes/4-Agents/memory/tools/lookup`，并在第一条回复回执检索状态。命中事实必须标注 ID、库内位置和来源；涉及历史决策、结果、观察或因果链时追加 `--include-relations`，区分 `match: direct` 与 `relations` 关联命中，并按启动协议标注 F-/R-、库内位置和 source；未命中、冲突或读取失败按启动协议处理。
 
 每次任务还必须读取同目录的 `../session-recording.md`（canonical：`/Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills/skills/dev/session-recording.md`）：目标明确后确定唯一主文档和 `task_id`，按协议创建/复用根目录会话记录，并尽力启动后台 recorder；快速路径同样执行。会话期间只维护时效性快照，不直接写长期事实账本。
 
@@ -28,7 +28,7 @@ description: Use when 处理 Bilibili 客户端需求开发、技术方案、任
 
 1. 目标明确前不创建日志；目标明确后先按 `session-recording.md` 复用/原子创建唯一主文档，再开始实质工作。用户明确给出的原始 `.md` 优先，不能仅凭相似文件名猜文档。
 2. 确定 `task_id` 后立即尽力派发一个后台 recorder，发送主文档路径、协议和精简增量；主 agent 不等待它完成，继续回答并在关键状态变化时发送 checkpoint。
-3. 主 agent 维护需求生命周期的 `AGENT_PROGRESS` 和 `+需求理解/+spec/+task/+bugs`；recorder 只维护 `AI_SESSION_RECORD`。会话期间双方都不得写 `facts.jsonl`、`pending.jsonl`、`events.jsonl`。
+3. 主 agent 维护需求生命周期的 `AGENT_PROGRESS` 和 `+需求理解/+spec/+task/+bugs`；recorder 只维护 `AI_SESSION_RECORD`。会话期间双方都不得写 `facts.jsonl`、`pending.jsonl`、`events.jsonl`、`relations.jsonl`。
 4. 每次更新先重读并保护用户正文；最终回复前按协议有界等待 recorder，必要时在确认租约结束后回退，并在正常交付结果后附记录报告。不得把失败写成成功。
 
 ## 任务路由
@@ -56,7 +56,7 @@ description: Use when 处理 Bilibili 客户端需求开发、技术方案、任
 - 明确业务目标、实验范围、端差异、服务端字段、交互职责归属和验收标准。
 - 把未知项分为阻塞项与非阻塞项。
 - 先按 `../session-recording.md` 确定主文档、`task_id` 和 recorder，再开始实质分析；主文档已有时不得另建平行会话日志。
-- 先检索 memory 正式事实账本，命中即引用；能查到的禁止重复提问。
+- 先检索 `facts.jsonl` 当前 active 节点（`kind=fact|decision|outcome|observation`），命中即引用；`pending.jsonl` 仅是候选，不可作依据，能查到的禁止重复提问。涉及历史决策、结果或因果再追加 `--include-relations`，并在使用关系前运行 `tools/validate` 确认 `validation: ok`；只有 active 且通过 `CAUSAL-MEMORY.md` 证据门禁的关系才能支持归因，`relations: 0` 不代表全库没有关系。
 - 存在多种合理解释时先询问；明确且低风险的小修改直接执行。
 - 生成需求理解 / 技术方案 / 任务拆分文档遵守 `references/doc-content-discipline.md`：动笔前先检索个人库命中专题，骨架先行，每条断言带出处，无出处的进待确认。
 - 原始需求入口场景把结论写入 `+需求理解.md`，标记“待 Owner 审批”；审批前不得创建 Spec 或实施。
@@ -105,7 +105,7 @@ description: Use when 处理 Bilibili 客户端需求开发、技术方案、任
 - Owner 创建 `+bugs.md` 后按顺序一次修复一条，每条下面只追加“原因”和“修复”，必要时主动同步前三份文档。
 - 主 agent 在关键结论/状态变化时向 recorder 发送精简快照；最终验证前发送实际使用清单，最终回复前按协议做一次有界等待并报告记录状态。
 - 标准路径本地实现完成并完成基础验证后即标记“待 Owner 验收”，以 Owner 验收作为本地实现闭环完成条件；快速路径完成简短一致性检查即可。
-- 会话期间不直接更新 `facts.jsonl`、`pending.jsonl` 或 `events.jsonl`；只在会话快照中保留可追溯的结论和来源。由每日 08:00 任务按 `session-recording.md` 提炼事实、写账本并回填引用。
+- 会话期间不直接更新 `facts.jsonl`、`pending.jsonl`、`events.jsonl` 或 `relations.jsonl`；只在会话快照中保留可追溯的结论和来源。由每日 08:00 任务按 `session-recording.md` 提炼事实、决策/结果节点和关系候选，写账本并回填引用。
 - 记录区只保留精简续接快照，不新增事实候选章节；每日任务成功入账后才更新主文档的 `AI_KB_LINKS` 引用区。
 - 稳定、通用且经代码验证的知识同步到对应工程 `doc/`；一次性需求细节留在个人笔记。
 - 更新工程正文时同步维护对应 `README.md` 文档地图。

@@ -33,7 +33,7 @@
 | 工作流正文（`需求理解`、`spec`、`task`、`bugs` 等） | 主 agent | 按工作流增量维护；用户手改优先 |
 | `AGENT_PROGRESS` | 主 agent | 仅按需求生命周期更新；recorder/日更不改 |
 | `AI_SESSION_RECORD` | recorder；失败回退时由主 agent 接管 | 只写会话续接快照 |
-| `AI_KB_LINKS` | 每日任务 | 只写已成功入账事实的引用和回填状态 |
+| `AI_KB_LINKS` | 每日任务 | 只写已成功入账事实/关系的引用和回填状态 |
 
 机器区采用以下固定骨架。字段没有内容时写 `暂无` 或 `不可得（原因）`，不能留给新 agent 猜测：
 
@@ -56,7 +56,7 @@
 
 <!-- AI_KB_LINKS_START schema=1 -->
 ## 知识库引用
-- 已回填事实：暂无
+- 已回填事实/关系：暂无
 - 最近回填窗口：暂无
 - 回填状态：待每日提炼
 - 更新时间（Asia/Shanghai）：暂无
@@ -84,7 +84,7 @@
 
 主 agent 确定主文档和 `task_id` 后，尽力启动一个后台 recorder，然后立即继续主任务，不等待 recorder 首次写入。同一会话只启动一个 recorder，并向它发送精简增量（目标、状态、决定、证据、下一步和真实路径），不发送或要求它暴露内部推理。
 
-同一会话只派发一个 recorder 即取得该 `task_id` 的逻辑写者租约；宿主提供协调/锁机制时优先使用，没有锁时以“单 recorder + 写前重读/原子替换”保证独占。检测到另一写者或无法确认文件归属时不得抢写，按 `deferred` 或 `conflict` 报告。recorder 是 `AI_SESSION_RECORD` 的唯一正常写者，只能更新该区及其区内更新时间；不得再次调用 dev/bugfix workflow，也不得递归派发子 agent。它不得写 `facts.jsonl`、`pending.jsonl`、`events.jsonl`，不得改 `背景`/`诉求`、`AGENT_PROGRESS`、其他任务文档、代码、插件或 Git。
+同一会话只派发一个 recorder 即取得该 `task_id` 的逻辑写者租约；宿主提供协调/锁机制时优先使用，没有锁时以“单 recorder + 写前重读/原子替换”保证独占。检测到另一写者或无法确认文件归属时不得抢写，按 `deferred` 或 `conflict` 报告。recorder 是 `AI_SESSION_RECORD` 的唯一正常写者，只能更新该区及其区内更新时间；不得再次调用 dev/bugfix workflow，也不得递归派发子 agent。它不得写 `facts.jsonl`、`pending.jsonl`、`events.jsonl`、`relations.jsonl`，不得改 `背景`/`诉求`、`AGENT_PROGRESS`、其他任务文档、代码、插件或 Git。
 
 最终回复前主 agent 做一次有界等待并取得 recorder 的终态：
 
@@ -98,9 +98,9 @@
 
 ## 5. 每日事实提炼与引用回填
 
-每日 08:00 任务扫描目标日窗口（默认运行日前一自然日，含该窗口内的进行中任务）和 Notes 下可读材料。`AI_SESSION_RECORD`、`AI_KB_LINKS` 只用于定位任务，不能作为新事实来源。事实必须追溯到原始用户消息、工具消息，或有定位的文件/代码/日志/构建证据；用户确认或可复现观察才可进入 `facts.jsonl`。会话来源拿不到宿主要求的 message ID 时，写入 `pending.jsonl` 或报告来源不可定位，绝不以 AI 快照替代来源。推断、冲突、来源不全或仅来自 AI 归纳的内容进入 `pending.jsonl`，不写成事实。
+每日 08:00 任务扫描目标日窗口（默认运行日前一自然日，含该窗口内的进行中任务）和 Notes 下可读材料。`AI_SESSION_RECORD`、`AI_KB_LINKS` 只用于定位任务，不能作为新事实来源。事实必须追溯到原始用户消息、工具消息，或有定位的文件/代码/日志/构建证据；用户确认或可复现观察才可进入 `facts.jsonl`。决策、结果和观察可用 `kind` 节点记录；因果关系必须另外满足 `CAUSAL-MEMORY.md` 的证据门禁后才进入 `relations.jsonl`。会话来源拿不到宿主要求的 message ID 时，写入 `pending.jsonl` 或报告来源不可定位，绝不以 AI 快照替代来源。推断、冲突、来源不全或仅来自 AI 归纳的内容进入 `pending.jsonl`，不写成事实或正式关系。
 
-先校验并幂等写入 `facts.jsonl`/`pending.jsonl`/`events.jsonl`，确认账本成功后才在每个相关受管主文档各自的 `AI_KB_LINKS` 区增加 `F-*`、`facts.jsonl#F-*` 和原始来源定位；同一事实可被多个文档引用，逐文档去重，语义上已存在的事实复用原 `F-*`，无法判定重复时写 `pending` 而不是新增正式事实，不能重复写账本。引用格式精简、路径真实；不得把 AI 快照当 source。日更只可修改 `AI_KB_LINKS` 区及该区更新时间，不改 `背景`、`诉求`、`AGENT_PROGRESS`、`AI_SESSION_RECORD` 或其他正文；用户手改优先。
+先校验并幂等写入 `facts.jsonl`/`pending.jsonl`/`events.jsonl`/`relations.jsonl`，确认账本成功后才在每个相关受管主文档各自的 `AI_KB_LINKS` 区增加 `F-*`、`R-*`、对应账本位置和原始来源定位；同一事实或关系可被多个文档引用，逐文档去重，语义上已存在的条目复用原 ID，无法判定重复时写 `pending` 而不是新增正式条目，不能重复写账本。引用格式精简、路径真实；不得把 AI 快照当 source。日更只可修改 `AI_KB_LINKS` 区及该区更新时间，不改 `背景`、`诉求`、`AGENT_PROGRESS`、`AI_SESSION_RECORD` 或其他正文；用户手改优先。
 
 账本成功而回填失败时保留账本、报告失败并保留可重试状态；不推进错误游标，下一次重试且不重复事实/引用。任一来源、校验、报告或回填失败都要在日更报告中列出，不能宣称完整覆盖。自动任务不执行任何 Git，Obsidian Git 的 commit/push 独立运行。
 

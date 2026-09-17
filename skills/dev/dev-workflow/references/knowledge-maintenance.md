@@ -4,11 +4,12 @@
 
 ### 个人智能体知识
 
-长期事实唯一写入 `/Users/sgx/Documents/Notes/4-Agents/memory/facts.jsonl`；推断、冲突或来源不完整的候选写入同目录 `pending.jsonl`，更正和处理记录写入 `events.jsonl`。按 `BOOTSTRAP.md` 规定的 schema、来源定位和幂等规则维护；会话工作流及后台 recorder 不直接写这些账本，每日 08:00 任务负责提炼和回填 `AI_KB_LINKS`。
+长期事实唯一写入 `/Users/sgx/Documents/Notes/4-Agents/memory/facts.jsonl`；已证实的决策、结果和观察可作为带 `kind` 的事实节点，已证实的关系写入 `relations.jsonl`；推断、冲突、预测或来源不完整的候选写入 `pending.jsonl`，更正和处理记录写入 `events.jsonl`。按 `BOOTSTRAP.md` 和 `CAUSAL-MEMORY.md` 规定的 schema、来源定位和幂等规则维护；会话工作流及后台 recorder 不直接写这些账本，每日 08:00 任务负责提炼和回填 `AI_KB_LINKS`。
 
 | 内容 | 位置 |
 |---|---|
 | 已确认/可复现事实 | `memory/facts.jsonl` |
+| 已证实的决策、结果、观察关系 | `memory/relations.jsonl` |
 | 待确认候选 | `memory/pending.jsonl` |
 | 更正、撤回和同步事件 | `memory/events.jsonl` |
 | 可复制模板 | `template/` |
