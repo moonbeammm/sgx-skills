@@ -42,7 +42,7 @@
 
 ## 技能
 
-技能唯一源位于 `skills/<分类>/<技能>/SKILL.md`（`dev/`：开发工作流；`tools/`：工具/知识读取；`in-progress/`：待确认草案；Claude 市场 `sgx-skills`）。
+技能唯一源位于 `skills/<分类>/<技能>/SKILL.md`（`dev/`：开发工作流；`tools/`：工具/知识读取，含 Apple 官方 iOS/SwiftUI/App Intents 技能；`in-progress/`：待确认草案；Claude 市场 `sgx-skills`）。
 
 装载：Claude Code → `claude plugin marketplace add /Users/sgx/Documents/Notes/4-Agents/plugins/sgx-skills`；Codex 桌面端（最新版已支持）→ 直接 `add local` 本仓库路径。使用本地源时重载/重启会话后生效；若运行时仍使用已缓存版本，需重新加载本地插件，不要直接编辑缓存副本。
 
@@ -51,7 +51,7 @@
 | 子目录 | 收纳内容 |
 |---|---|
 | [template](template/) | 可复用的模板：代码片段、文档模板、标准写法 |
-| [skills](skills/) | 技能唯一源（每技能含 SKILL.md）：`dev/`：dev-workflow、bugfix-workflow；`tools/`：code-review、info-fetch、zhiliao；`in-progress/`：bilibili-ios-trace-analysis、analyze-ios-stability（草案） |
+| [skills](skills/) | 技能唯一源（每技能含 SKILL.md）：`dev/`：dev-workflow、bugfix-workflow；`tools/`：code-review、info-fetch、zhiliao、app-intents-specialist、app-intents-whats-new-27、app-resizability、device-interaction；`in-progress/`：bilibili-ios-trace-analysis、analyze-ios-stability（草案） |
 | [session-recording](skills/dev/session-recording.md) | `dev-workflow` 与 `bugfix-workflow` 共用的会话续接、recorder 和日更引用协议 |
 | [CAUSAL-MEMORY](../../memory/CAUSAL-MEMORY.md) | 决策、结果、关系边和证据门禁 |
 
@@ -75,6 +75,10 @@
 | `tapd-all` | 读取 TAPD 需求与缺陷 |
 | `code-review` | 读取和审查 GitLab 合并请求 |
 | [zhiliao](skills/tools/zhiliao/SKILL.md) | 读取知了文档（SKILL + mjs 脚本，源在笔记） |
+| [app-intents-specialist](skills/tools/app-intents-specialist/SKILL.md) | App Intents 通用最佳实践（Apple 官方；执行模型、实体/查询、AppEnum、依赖、本地化等 14 篇参考） |
+| [app-intents-whats-new-27](skills/tools/app-intents-whats-new-27/SKILL.md) | App Intents iOS 26/27 新 API 与废弃迁移（执行模式、Snippet、视觉智能、Spotlight、EntityCollection、测试等 14 篇参考） |
+| [app-resizability](skills/tools/app-resizability/SKILL.md) | UIKit 可调整尺寸化：替换 UIScreen/orientation/idiom/对称安全区、迁移 scene 生命周期（含折叠屏 iPhone Duo） |
+| [device-interaction](skills/tools/device-interaction/SKILL.md) | 真机/模拟器验证：截图 + UI 层级 hitPoint + 触摸/按键合成（subagent 技能，需设备交互工具） |
 | [bilibili-ios-trace-analysis](skills/in-progress/bilibili-ios-trace-analysis/SKILL.md) | in-progress：B 站 iOS Instruments .trace 分析（卡顿/挂起/死锁/内存分诊与报告） |
 | [analyze-ios-stability](skills/in-progress/analyze-ios-stability/SKILL.md) | in-progress：KNTR iOS 跨语言稳定性审计（崩溃/内存/死锁证据排查） |
 | `figma-cache` | 读取 Figma 设计 |

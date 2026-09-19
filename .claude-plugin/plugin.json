@@ -1,6 +1,6 @@
 {
   "name": "sgx-skills",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "日常研发与BUG排查的agent技能集。",
   "author": {
     "name": "sunguangxin",
@@ -20,6 +20,10 @@
     "./skills/tools/code-review",
     "./skills/tools/info-fetch",
     "./skills/tools/zhiliao",
+    "./skills/tools/app-intents-specialist",
+    "./skills/tools/app-intents-whats-new-27",
+    "./skills/tools/app-resizability",
+    "./skills/tools/device-interaction",
     "./skills/in-progress/bilibili-ios-trace-analysis",
     "./skills/in-progress/analyze-ios-stability"
   ]
